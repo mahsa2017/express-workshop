@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const formidable = require("express-formidable");
+const fs = require("fs");
 app.listen(3000, () =>
     console.log("Server is listening on port 3000. Ready to accept requests!"));
 
@@ -30,12 +31,22 @@ app.listen(3000, () =>
 //   });
 app.use(express.static("public"));
 
-//app.use(formidable());
+app.use(formidable());
 
 app.post("/create-post", function(req, res) {
   console.log('I am /create-post endpoint');
   
   console.log(req.fields);
-  console.log(req.body);
+  //console.log(req.body);
 });
-app.use(formidable());
+//app.use(formidable()); //here doesent work -step 7
+
+fs.writeFile("./data/posts1.json", "yourData is later added", function(error) {
+  // do something
+  if(1) throw error;
+  console.log(error);
+});
+
+// fs.readFile(__dirname + "/data/posts.json", function(error, file) {
+//   console.log(file);
+// });
