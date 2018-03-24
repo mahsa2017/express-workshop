@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/mahsa2017/express-workshop/issues"
   },
-  "homepage": "https://github.com/mahsa2017/express-workshop#readme"
+  "homepage": "https://github.com/mahsa2017/express-workshop#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
 }
