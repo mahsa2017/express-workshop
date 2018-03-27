@@ -43,6 +43,7 @@ fs.writeFile("./data/posts_1.json", "Hello World", function(error) {
   console.log('The file has been saved!');
 });
 
-// fs.readFile("./data", function(error, posts.json) {
-//   // do something
-// });
+fs.readFile(__dirname + "/data/posts.json", function(error, file) {
+  console.log(file.toString());
+  const parsedFile = JSON.parse(file);
+});
