@@ -19,5 +19,8 @@
   "dependencies": {
     "express": "^4.16.3",
     "express-formidable": "^1.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.2"
   }
 }
