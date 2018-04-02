@@ -41,10 +41,10 @@ app.listen(3000, () =>
  res.send(req.fields);
 });
 
-// fs.writeFile("./data/posts_1.json","Hello world", function(error) {
-//   //if (error) throw error;
-//   console.log('The file has been saved!');
-// });
+fs.appendFile("./data/posts_1.json","Hello world", function(error) {
+  //if (error) throw error;
+  console.log('The file has been saved!');
+});
   
 // fs.readFile(__dirname + "/data/posts.json", function(error, file) {
 //   console.log(file.toString());
