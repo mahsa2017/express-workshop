@@ -37,7 +37,7 @@ app.listen(3000, () =>
 
  app.post("/create-post", function (req, res) {
   // console.log('I am /create-post endpoint');
- console.log(req.fields)// contains non-file fields 
+ console.log(req.fields);// contains non-file fields 
  res.send(req.fields);
 });
 
