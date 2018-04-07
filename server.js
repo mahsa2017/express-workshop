@@ -32,32 +32,45 @@ app.listen(3000, () =>
  app.use(express.static("public"));
 
  app.use(formidable());
-
- app.post("/create-post", function (req, res) {
-  // console.log('I am /create-post endpoint');
- console.log(req.fields);// contains non-file fields 
- fs.appendFile("./data/posts.json", parsedFile, function(error) {
+ var blogposts
+ 
+ //fs.appendFile("./data/posts.json", parsedFile, function(error) {
   //if (error) throw error;
-  console.log('The file has been saved!');
-});
- res.send(req.fields);
-});
+ // console.log('The file has been saved!');
+//});
+
 
 // fs.appendFile("./data/posts.json", parsedFile, function(error) {
 //   //if (error) throw error;
 //   console.log('The file has been saved!');
 // });
-
+fs.readFile(__dirname + "/data/posts.json", function(error, file) {
+  console.log(file.toString());
+  blogposts = JSON.parse(file); //array
+  
+});
 app.get("/get-posts", function(req, res) {
-  res.send(parsedFile);
+  res.send(blogposts);
 console.log(req);
 });
 
-var parsedFile
+app.post("/create-post", function (req, res) {
+  // console.log('I am /create-post endpoint');
+ console.log(req.fields);// contains non-file fields 
+ 
 fs.readFile(__dirname + "/data/posts.json", function(error, file) {
   console.log(file.toString());
-  parsedFile = JSON.parse(file);
+  blogposts = JSON.parse(file); //array
+  const blogpost = req.fields;
+  console.log(blogposts,"blogpostssssssss")
+  blogposts.push(blogpost);
+  fs.writeFile(__dirname + "/data/posts.json",JSON.stringify(blogposts),function(err){
+
+      });
 });
+res.send(req.fields);
+});
+
 
 // //how to read from a file and write to a new or another existing file
 // fs.readFile("readme.txt",'utf8',function(err,data){
