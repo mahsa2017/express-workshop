@@ -29,9 +29,9 @@ function postBlogposts (url, data) {
     })
     .then(function (res) {
         res.json()
-            .then(function (json) {
-                console.log(json);
-                addBlogpostsToPage(json);
+            .then(function (blogpost) {
+                console.log(blogpost);
+                addBlogpostsToPage([blogpost]);
                 document.querySelector('form').reset();
         })
     })
@@ -57,8 +57,8 @@ function getBlogposts (url) {
 }
 
 function addBlogpostsToPage (data) {
-    for (var blogpost in data) {
-        if (data.hasOwnProperty(blogpost)) {
+    data.forEach (function (item){
+        if (item.hasOwnProperty("blogpost")) {
 
             var postDiv         = document.createElement('div');
             var postText        = document.createElement('p');
@@ -67,12 +67,12 @@ function addBlogpostsToPage (data) {
 
             thumbnail.src = "./img/logo2.png";
             thumbnail.className = "thumbnail";
-            postText.innerHTML = data[blogpost];
+            postText.innerHTML = item["blogpost"];
             postDiv.className = "post";
 
             postDiv.appendChild(thumbnail);
             postDiv.appendChild(postText);
             postContainer.appendChild(postDiv);
         }
-    }
+    })
 }

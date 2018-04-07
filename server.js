@@ -12,9 +12,7 @@ app.listen(3000, () =>
 // app.get("/", function (req, res) {
 //     res.send("Hello World!");
 // });
-// app.get("/", function(req, res) {
-// console.log(req);
-// });
+
 // app.get("/", function(req, res) {
 //     res.send("Yay Node Girls!");
 //   });
@@ -38,18 +36,28 @@ app.listen(3000, () =>
  app.post("/create-post", function (req, res) {
   // console.log('I am /create-post endpoint');
  console.log(req.fields);// contains non-file fields 
- res.send(req.fields);
-});
-
-fs.appendFile("./data/posts_1.json","Hello world", function(error) {
+ fs.appendFile("./data/posts.json", parsedFile, function(error) {
   //if (error) throw error;
   console.log('The file has been saved!');
 });
-  
-// fs.readFile(__dirname + "/data/posts.json", function(error, file) {
-//   console.log(file.toString());
-//   const parsedFile = JSON.parse(file);
+ res.send(req.fields);
+});
+
+// fs.appendFile("./data/posts.json", parsedFile, function(error) {
+//   //if (error) throw error;
+//   console.log('The file has been saved!');
 // });
+
+app.get("/get-posts", function(req, res) {
+  res.send(parsedFile);
+console.log(req);
+});
+
+var parsedFile
+fs.readFile(__dirname + "/data/posts.json", function(error, file) {
+  console.log(file.toString());
+  parsedFile = JSON.parse(file);
+});
 
 // //how to read from a file and write to a new or another existing file
 // fs.readFile("readme.txt",'utf8',function(err,data){
@@ -57,3 +65,4 @@ fs.appendFile("./data/posts_1.json","Hello world", function(error) {
 //    });
 //   console.log(data,"for test");
 // });
+ 
