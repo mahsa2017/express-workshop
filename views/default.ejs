@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <% include partials/pages/head.ejs %>
+</head>
+
+<body class="<% classname %>">
+  <% include partials/pages/header.ejs %>
+    <h1>Hello, world!</h1>
+    <h2>
+      <%= pagetitle %>
+    </h2>
+    <% include partials/pages/jsdefaults.ejs %>
+      <% include partials/pages/footer.ejs %>
+<ul>
+   <% if(typeof(users) !== 'undefined'){ %>
+      <% for(var i=0;i< users.length; i++) { %>
+        <li>
+           <%= users[i] %>
+        </li>
+          <% } %>
+              <% } %>
+      </ul>
+</body>
+
+</html>
